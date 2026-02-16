@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Final - Wayne Industries</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #0a0a0f;
+            color: #e8e8f0;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border-radius: 30px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 215, 0, 0.03) 2px, rgba(255, 215, 0, 0.03) 4px);
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .bat-logo {
+            width: 120px;
+            height: 60px;
+            margin: 0 auto 30px;
+            color: #ffd700;
+            filter: drop-shadow(0 0 30px #ffd700);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 20px #ffd700); }
+            50% { filter: drop-shadow(0 0 40px #ffd700) drop-shadow(0 0 60px #ffd700); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ffd700 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #9999aa;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: #9999aa;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        .badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .badge {
+            padding: 10px 25px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid #ffd700;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .section-icon {
+            font-size: 48px;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(18, 18, 26, 0.95);
+            border: 1px solid #2a2a35;
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.2);
+            border-color: #ffd700;
+        }
+
+        .card-icon {
+            font-size: 56px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .card-description {
+            color: #9999aa;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .card-features {
+            list-style: none;
+        }
+
+        .card-features li {
+            padding: 8px 0;
+            color: #9999aa;
+            font-size: 15px;
+        }
+
+        .card-features li::before {
+            content: '✓';
+            color: #00ff88;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Tech Stack */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid #2a2a35;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: #ffd700;
+        }
+
+        .tech-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #ffd700;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .tech-version {
+            color: #9999aa;
+            font-size: 14px;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #0a0a0f;
+            border: 1px solid #2a2a35;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            color: #00d4ff;
+            font-size: 14px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .code-block code {
+            font-family: 'Courier New', monospace;
+            color: #00ff88;
+            font-size: 14px;
+            line-height: 1.8;
+            display: block;
+        }
+
+        .code-comment {
+            color: #666677;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 212, 255, 0.1) 100%);
+            border: 1px solid #2a2a35;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #9999aa;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #ffd700 0%, #00d4ff 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #ffd700;
+            border: 3px solid #0a0a0f;
+            box-shadow: 0 0 20px #ffd700;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: #9999aa;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 60px 0 40px;
+            border-top: 1px solid #2a2a35;
+            margin-top: 100px;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: 40px;
+            margin: 0 auto 20px;
+            color: #ffd700;
+            filter: drop-shadow(0 0 20px #ffd700);
+        }
+
+        .footer-text {
+            color: #9999aa;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-copyright {
+            color: #666677;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .hero {
+                break-inside: avoid;
+            }
+            
+            .section {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- Hero Section -->
+        <div class="hero">
+            <svg class="bat-logo" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50,5 L45,15 L35,20 L25,18 L15,25 L10,35 L20,30 L30,32 L40,28 L50,35 L60,28 L70,32 L80,30 L90,35 L85,25 L75,18 L65,20 L55,15 Z" fill="currentColor"/>
+            </svg>
+            <h1>WAYNE INDUSTRIES</h1>
+            <p class="subtitle">Security Management System</p>
+            <p class="hero-description">
+                Sistema completo de gerenciamento de segurança e recursos desenvolvido com as melhores práticas de desenvolvimento Full Stack. 
+                Integração perfeita entre Python/Flask no backend e HTML/CSS/JavaScript no frontend, com autenticação robusta, 
+                autorização baseada em níveis e dashboard executivo em tempo real.
+            </p>
+            <div class="badges">
+                <span class="badge">✓ Full Stack</span>
+                <span class="badge">✓ Python + Flask</span>
+                <span class="badge">✓ HTML/CSS/JS</span>
+                <span class="badge">✓ SQLite</span>
+                <span class="badge">✓ REST API</span>
+            </div>
+        </div>
+
+        <!-- Funcionalidades -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">⚡</span>
+                <h2 class="section-title">Funcionalidades Implementadas</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">🔒</span>
+                    <h3 class="card-title">Sistema de Segurança</h3>
+                    <p class="card-description">Controle total de acesso com autenticação e autorização robustas.</p>
+                    <ul class="card-features">
+                        <li>Autenticação com tokens seguros</li>
+                        <li>Hash SHA-256 para senhas</li>
+                        <li>Autorização baseada em níveis (1-5)</li>
+                        <li>Sessões com expiração automática</li>
+                        <li>Logs de todas as tentativas de acesso</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">📦</span>
+                    <h3 class="card-title">Gestão de Recursos</h3>
+                    <p class="card-description">Inventário completo de equipamentos, veículos e dispositivos de segurança.</p>
+                    <ul class="card-features">
+                        <li>CRUD completo (Create, Read, Update, Delete)</li>
+                        <li>Categorização automática</li>
+                        <li>Controle de status e localização</li>
+                        <li>Filtros avançados</li>
+                        <li>Rastreamento de manutenção</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">📊</span>
+                    <h3 class="card-title">Dashboard Executivo</h3>
+                    <p class="card-description">Visualização em tempo real de operações e estatísticas de segurança.</p>
+                    <ul class="card-features">
+                        <li>Estatísticas em tempo real</li>
+                        <li>Gráficos interativos</li>
+                        <li>Feed de atividades recentes</li>
+                        <li>Alertas de segurança</li>
+                        <li>Métricas de desempenho</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tecnologias -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🛠</span>
+                <h2 class="section-title">Stack Tecnológico</h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🐍</div>
+                    <div class="tech-name">Python</div>
+                    <div class="tech-version">3.8+</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🌶️</div>
+                    <div class="tech-name">Flask</div>
+                    <div class="tech-version">3.0</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🗄️</div>
+                    <div class="tech-name">SQLite</div>
+                    <div class="tech-version">3.x</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">📄</div>
+                    <div class="tech-name">HTML5</div>
+                    <div class="tech-version">Semântico</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🎨</div>
+                    <div class="tech-name">CSS3</div>
+                    <div class="tech-version">Avançado</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <div class="tech-name">JavaScript</div>
+                    <div class="tech-version">ES6+</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arquitetura -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🏗</span>
+                <h2 class="section-title">Arquitetura do Sistema</h2>
+            </div>
+            <div class="code-block">
+                <div class="code-header">Estrutura de Diretórios</div>
+                <code>wayne_industries/
+                    <p></p>
+                    ├── backend/
+                    <p></p>
+                    │   ├── app.py              <span class="code-comment"># Servidor Flask principal</span>
+                    <p></p>
+                    │   └── requirements.txt    <span class="code-comment"># Dependências Python</span>
+                    <p></p>
+                    
+                    ├── frontend/
+                    <p></p>
+                    │   ├── index.html         <span class="code-comment"># Interface principal</span>
+                    <p></p>
+                    │   ├── css/
+                    <p></p>
+                    │   │   └── styles.css     <span class="code-comment"># Estilos da aplicação</span>
+                    <p></p>
+                    │   ├── js/
+                    <p></p>
+                    │   │   └── app.js         <span class="code-comment"># Lógica JavaScript</span>
+                    <p></p>
+                    │   ├── database/
+                    <p></p>
+                    │   │   └── wayne_industries.db <span class="code-comment"># Banco SQLite (auto-gerado)</span>
+                    <p></p>
+                    │   ├── docs/
+                    <p></p>
+                    │   │   └── DOCUMENTACAO.md     <span class="code-comment"># Documentação completa</span>
+                        <p></p>
+                    │   │   └── GUIA_INSTALACAO.html <span class="code-comment"># Guia visual</span></code>
+            </div>
+        </div>
+
+        <!-- Instalação -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🚀</span>
+                <h2 class="section-title">Instalação e Uso</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">1. Instalar Dependências</div>
+                    <div class="timeline-description">
+                        <div class="code-block">
+                            <code>cd backend
+pip install -r requirements.txt --break-system-packages</code>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">2. Iniciar Servidor</div>
+                    <div class="timeline-description">
+                        <div class="code-block">
+                            <code>python app.py</code>
+                        </div>
+                        O servidor será iniciado em <strong style="color: #00ff88;">http://localhost:5000</strong>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">3. Acessar Sistema</div>
+                    <div class="timeline-description">
+                        Abra seu navegador e acesse a URL do servidor. Use as credenciais de teste fornecidas para login.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credenciais -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔑</span>
+                <h2 class="section-title">Credenciais de Teste</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">👑</span>
+                    <h3 class="card-title">Admin (Nível 5)</h3>
+                    <div class="code-block">
+                        <code>Usuário: bruce.wayne
+Senha: Batman2024!</code>
+                    </div>
+                    <p class="card-description">Acesso total ao sistema, incluindo gestão de usuários e configurações.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">👔</span>
+                    <h3 class="card-title">Manager (Nível 4)</h3>
+                    <div class="code-block">
+                        <code>Usuário: lucius.fox
+Senha: Tech2024!</code>
+                    </div>
+                    <p class="card-description">Gestão de recursos, visualização de logs e acesso a áreas restritas.</p>
+                </div>
+
+                <div class="card">
+                    <span class="card-icon">👤</span>
+                    <h3 class="card-title">Employee (Nível 2)</h3>
+                    <div class="code-block">
+                        <code>Usuário: dick.grayson
+Senha: Nightwing1!</code>
+                    </div>
+                    <p class="card-description">Visualização de recursos e acesso a áreas básicas do sistema.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📈</span>
+                <h2 class="section-title">Métricas do Projeto</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">15</div>
+                    <div class="stat-label">API Endpoints</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Tabelas BD</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Telas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">~3K</div>
+                    <div class="stat-label">Linhas de Código</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Segurança -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🛡️</span>
+                <h2 class="section-title">Recursos de Segurança</h2>
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3 class="card-title">Autenticação</h3>
+                    <ul class="card-features">
+                        <li>Hash SHA-256 para senhas</li>
+                        <li>Tokens seguros com secrets</li>
+                        <li>Expiração automática (8h)</li>
+                        <li>Validação em todas as rotas</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Autorização</h3>
+                    <ul class="card-features">
+                        <li>Níveis de acesso (1-5)</li>
+                        <li>Decoradores de proteção</li>
+                        <li>Isolamento de dados</li>
+                        <li>Verificação por função</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Banco de Dados</h3>
+                    <ul class="card-features">
+                        <li>Prepared statements</li>
+                        <li>Foreign keys ativas</li>
+                        <li>Constraints de integridade</li>
+                        <li>Proteção SQL injection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <svg class="footer-logo" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50,5 L45,15 L35,20 L25,18 L15,25 L10,35 L20,30 L30,32 L40,28 L50,35 L60,28 L70,32 L80,30 L90,35 L85,25 L75,18 L65,20 L55,15 Z" fill="currentColor"/>
+            </svg>
+            <p class="footer-text">🦇 <strong>WAYNE INDUSTRIES</strong> - Security Management System</p>
+            <p class="footer-text">"In the darkness, there is strength"</p>
+            <p class="footer-text">Desenvolvido com excelência para proteger Gotham City</p>
+            <p class="footer-copyright">© 2026 Wayne Industries. Todos os direitos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

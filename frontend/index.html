@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayne Industries - Security Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles-advanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen active">
+        <div class="login-container">
+            <div class="login-background"></div>
+            <div class="login-box">
+                <div class="logo-container">
+                    <div class="bat-logo">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50,5 L45,15 L35,20 L25,18 L15,25 L10,35 L20,30 L30,32 L40,28 L50,35 L60,28 L70,32 L80,30 L90,35 L85,25 L75,18 L65,20 L55,15 Z" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h1>WAYNE INDUSTRIES</h1>
+                    <p class="subtitle">Security Management System</p>
+                </div>
+                
+                <form id="login-form" class="login-form" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="username">Usuário</label>
+                        <input type="text" id="username" name="username" required autocomplete="username" placeholder="Digite seu usuário">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Digite sua senha">
+                    </div>
+                    
+                    <div id="login-error" class="error-message"></div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span>ACESSAR SISTEMA</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </form>
+                
+                <div class="login-info">
+                    <h3>Credenciais de Teste</h3>
+                    <div class="credentials">
+                        <div class="credential-item">
+                            <strong>Admin:</strong> bruce.wayne / Batman2024!
+                        </div>
+                        <div class="credential-item">
+                            <strong>Manager:</strong> lucius.fox / Tech2024!
+                        </div>
+                        <div class="credential-item">
+                            <strong>Employee:</strong> dick.grayson / Nightwing1!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aplicação Principal -->
+    <div id="app-screen" class="screen">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-left">
+                <div class="bat-logo-small">
+                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M50,5 L45,15 L35,20 L25,18 L15,25 L10,35 L20,30 L30,32 L40,28 L50,35 L60,28 L70,32 L80,30 L90,35 L85,25 L75,18 L65,20 L55,15 Z" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="header-title">
+                    <h2>WAYNE INDUSTRIES</h2>
+                    <span class="header-subtitle">Security Management</span>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="user-details">
+                        <span class="user-name" id="user-name">Loading...</span>
+                        <span class="user-role" id="user-role">...</span>
+                    </div>
+                    <div class="user-avatar" id="user-avatar">
+                        <span id="user-initials">U</span>
+                    </div>
+                </div>
+                <button id="logout-btn" class="btn-logout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="nav-menu">
+                <button class="nav-item active" data-view="dashboard">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                
+                <button class="nav-item" data-view="resources">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <span>Recursos</span>
+                </button>
+                
+                <button class="nav-item" data-view="areas">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span>Áreas Restritas</span>
+                </button>
+                
+                <button class="nav-item" data-view="users" id="users-nav" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <span>Usuários</span>
+                </button>
+                
+                <button class="nav-item" data-view="logs" id="logs-nav" style="display: none;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Logs de Acesso</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view active">
+                <div class="view-header">
+                    <h2>Central de Comando</h2>
+                    <p>Visão geral das operações e segurança</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Usuários Ativos</span>
+                            <span class="stat-value" id="stat-users">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Recursos Disponíveis</span>
+                            <span class="stat-value" id="stat-available">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Acessos (24h)</span>
+                            <span class="stat-value" id="stat-accesses">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon red">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                <line x1="12" y1="9" x2="12" y2="13"></line>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-label">Acessos Negados</span>
+                            <span class="stat-value" id="stat-denied">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Recursos por Categoria</h3>
+                        <div id="resources-category-chart" class="chart-container"></div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Status dos Recursos</h3>
+                        <div id="resources-status-chart" class="chart-container"></div>
+                    </div>
+                    
+                    <div class="dashboard-card full-width">
+                        <h3>Atividades Recentes</h3>
+                        <div id="recent-activities" class="activities-list"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources View -->
+            <div id="resources-view" class="view">
+                <div class="view-header">
+                    <div>
+                        <h2>Gestão de Recursos</h2>
+                        <p>Inventário de equipamentos, veículos e dispositivos</p>
+                    </div>
+                    <button id="add-resource-btn" class="btn btn-primary" style="display: none;" onclick="openResourceModal()">
+                        <span>+ Adicionar Recurso</span>
+                    </button>
+                </div>
+                
+                <div class="filters">
+                    <select id="category-filter" class="filter-select">
+                        <option value="">Todas as Categorias</option>
+                        <option value="Equipamentos">Equipamentos</option>
+                        <option value="Veículos">Veículos</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                    </select>
+                    
+                    <select id="status-filter" class="filter-select">
+                        <option value="">Todos os Status</option>
+                        <option value="available">Disponível</option>
+                        <option value="in_use">Em Uso</option>
+                        <option value="maintenance">Manutenção</option>
+                        <option value="retired">Aposentado</option>
+                    </select>
+                </div>
+                
+                <div id="resources-grid" class="resources-grid"></div>
+            </div>
+
+            <!-- Areas View -->
+            <div id="areas-view" class="view">
+                <div class="view-header">
+                    <h2>Áreas Restritas</h2>
+                    <p>Controle de acesso a instalações de segurança</p>
+                </div>
+                
+                <div id="areas-grid" class="areas-grid"></div>
+            </div>
+
+            <!-- Users View -->
+            <div id="users-view" class="view">
+                <div class="view-header">
+                    <div>
+                        <h2>Gerenciamento de Usuários</h2>
+                        <p>Administração de equipe e permissões</p>
+                    </div>
+                    <button id="add-user-btn" class="btn btn-primary" onclick="openUserModal()">
+                        <span>+ Adicionar Usuário</span>
+                    </button>
+                </div>
+                
+                <div id="users-table" class="data-table-container"></div>
+            </div>
+
+            <!-- Logs View -->
+            <div id="logs-view" class="view">
+                <div class="view-header">
+                    <h2>Logs de Acesso</h2>
+                    <p>Histórico de tentativas de acesso às áreas restritas</p>
+                </div>
+                
+                <div id="logs-table" class="data-table-container"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Template -->
+    <div id="modal-overlay" class="modal-overlay">
+        <div id="modal-content" class="modal-content"></div>
+    </div>
+
+    <!-- Modal de Adicionar/Editar Recurso -->
+    <div id="resource-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="resource-modal-title">Adicionar Recurso</h3>
+                <button class="btn-close" onclick="closeResourceModal()">×</button>
+            </div>
+            <form id="resource-form" class="modal-form" onsubmit="saveResource(event); return false;">
+                <input type="hidden" id="resource-id">
+                
+                <div class="form-group">
+                    <label for="resource-name">Nome do Recurso *</label>
+                    <input type="text" id="resource-name" required placeholder="Ex: Batmóvel Modelo X">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resource-type">Tipo *</label>
+                        <select id="resource-type" required>
+                            <option value="">Selecione...</option>
+                            <option value="vehicle">Veículo</option>
+                            <option value="equipment">Equipamento</option>
+                            <option value="device">Dispositivo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-category">Categoria *</label>
+                        <select id="resource-category" required>
+                            <option value="">Selecione...</option>
+                            <option value="Veículos">Veículos</option>
+                            <option value="Equipamentos">Equipamentos</option>
+                            <option value="Tecnologia">Tecnologia</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="resource-location">Localização</label>
+                        <input type="text" id="resource-location" placeholder="Ex: Garagem Principal">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-quantity">Quantidade *</label>
+                        <input type="number" id="resource-quantity" required min="1" value="1">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resource-status">Status *</label>
+                    <select id="resource-status" required>
+                        <option value="available">Disponível</option>
+                        <option value="in_use">Em Uso</option>
+                        <option value="maintenance">Manutenção</option>
+                        <option value="retired">Aposentado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resource-description">Descrição</label>
+                    <textarea id="resource-description" rows="3" placeholder="Descreva o recurso..."></textarea>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeResourceModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Salvar Recurso</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Adicionar/Editar Usuário -->
+    <div id="user-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="user-modal-title">Adicionar Usuário</h3>
+                <button class="btn-close" onclick="closeUserModal()">×</button>
+            </div>
+            <form id="user-form" class="modal-form" onsubmit="saveUser(event); return false;">
+                <input type="hidden" id="user-id">
+                
+                <div class="form-group">
+                    <label for="user-name">Nome Completo *</label>
+                    <input type="text" id="user-name" required placeholder="Ex: Bruce Wayne">
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-username">Nome de Usuário *</label>
+                    <input type="text" id="user-username" required placeholder="Ex: bruce.wayne">
+                </div>
+                
+                <div class="form-group" id="password-group">
+                    <label for="user-password">Senha *</label>
+                    <input type="password" id="user-password" required placeholder="Mínimo 8 caracteres">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="user-role">Função *</label>
+                        <select id="user-role" required>
+                            <option value="">Selecione...</option>
+                            <option value="admin">Administrador</option>
+                            <option value="manager">Gerente</option>
+                            <option value="employee">Funcionário</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-level">Nível de Acesso *</label>
+                        <select id="user-level" required>
+                            <option value="">Selecione...</option>
+                            <option value="5">Nível 5 (Máximo)</option>
+                            <option value="4">Nível 4 (Alto)</option>
+                            <option value="3">Nível 3 (Médio)</option>
+                            <option value="2">Nível 2 (Básico)</option>
+                            <option value="1">Nível 1 (Mínimo)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-department">Departamento</label>
+                    <input type="text" id="user-department" placeholder="Ex: Executive, Security, R&D">
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>Salvar Usuário</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
